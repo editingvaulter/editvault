@@ -7,7 +7,7 @@
     "heroCta1": "Explore Editors",
     "heroCta2": "View Portfolio",
     "featuresTitle": "What we do",
-    "featuresSubtitle": "How we guarantee your next edit is a cinematic masterpiece.",
+    "featuresSubtitle": "\n",
     "marketTitle": "Our Roster of Master Editors",
     "marketSubtitle": "Filter through verified industry professionals to locate your perfect content companion.",
     "footerDesc": "A highly secure, meticulously hand-curated marketplace showcasing premier post-production visual talent across the digital spectrum.",
@@ -16,31 +16,27 @@
     "footerLoc": "Bengaluru, KA, India",
     "editors": [
         {
-            "name": "Marcus Vance",
-            "slug": "marcus-vance",
+            "name": "Vinod K",
+            "slug": "vinod-k",
             "rating": 4.9,
             "reviewsCount": 38,
             "specialization": "Documentary",
             "bannerImage": "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=800&q=80",
-            "avatarImage": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80",
-            "bio": "Award-winning visual storyteller specializing in long-form retention engineering, stylized color palettes, and heavy asset integration. Spent 4 years editing for prominent historical channels.",
-            "experience": "6+ Years",
+            "avatarImage": "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_profile_original/v1/attachments/profile/photo/e8f38eced53e07a5763fc96459979233-1751446897408/61791ba1-5f61-4101-bb76-16773f74707b.png",
+            "bio": "Creative visual storyteller specializing in talking-head retention engineering, stylized color grading, and clean asset integration. Over 4 years of professional experience transforming raw footage into high-engagement content for creators and brands.",
+            "experience": "4+ Years",
             "turnaround": "3-5 Days",
             "pricing": "From $600/project",
             "skills": [
                 "Premiere Pro",
-                "DaVinci Resolve",
-                "After Effects",
-                "Audio Engineering",
-                "Color Grading"
+                "After Effects"
             ],
             "tags": [
                 "Cinematic",
                 "Retentive Narrative",
-                "Sound Design Heavy"
+                ""
             ],
             "videos": [
-                "https://www.youtube.com/watch?v=WVbkYFwnY80",
                 "https://www.youtube.com/watch?v=xhyUg5ee6Ps"
             ],
             "socials": {
