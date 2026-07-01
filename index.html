@@ -59,8 +59,8 @@
         .section-header { text-align: center; margin-bottom: 60px; }
         .section-header h2 { font-size: 2.5rem; letter-spacing: -0.5px; margin-bottom: 16px; }
         .section-header p { color: var(--text-muted); max-width: 500px; margin: 0 auto; }
-        .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-        .feature-card { padding: 40px 32px; transition: all 0.3s ease; }
+        .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; transition: all 0.3s ease; }
+        .feature-card { padding: 40px 32px; transition: all 0.3s ease; position: relative; }
         .feature-card:hover { transform: translateY(-4px); border-color: var(--accent-neon); }
         .feature-icon { font-size: 2rem; background: linear-gradient(135deg, var(--accent-neon), var(--accent-purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 24px; }
         .feature-card h3 { font-size: 1.3rem; margin-bottom: 12px; }
@@ -75,7 +75,7 @@
         .tab-btn { background: var(--bg-surface); border: 1px solid var(--border-color); color: var(--text-muted); padding: 8px 20px; border-radius: 20px; cursor: pointer; font-size: 0.9rem; font-weight: 500; transition: all 0.2s; }
         .tab-btn:hover, .tab-btn.active { background: rgba(0, 240, 255, 0.1); color: var(--accent-neon); border-color: var(--accent-neon); }
 
-        .editors-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; }
+        .editors-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; transition: all 0.3s ease; }
         .editor-card { overflow: hidden; transition: all 0.4s var(--glow); display: flex; flex-direction: column; position: relative; }
         .editor-card:hover { transform: translateY(-8px); border-color: rgba(255, 255, 255, 0.2); box-shadow: 0 12px 40px rgba(0,0,0,0.5); }
         .card-banner { position: relative; height: 180px; background-size: cover; background-position: center; }
@@ -121,16 +121,38 @@
         @media (max-width: 992px) { .hero h1 { font-size: 3rem; } .features-grid { grid-template-columns: 1fr; } .profile-layout { grid-template-columns: 1fr; } .sticky-sidebar { position: static; } }
         @media (max-width: 768px) { .nav-links { display: none; } .footer-grid { grid-template-columns: 1fr; gap: 40px; } .hero h1 { font-size: 2.25rem; } .hero p { font-size: 1rem; } }
 
-        /* --- ADMIN ENGINE STYLES --- */
+        /* --- INTERACTIVE GRID MODULE --- */
         .admin-bar { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: rgba(10, 11, 14, 0.95); border: 2px solid var(--accent-neon); box-shadow: 0 0 30px rgba(0, 240, 255, 0.2); padding: 12px 24px; border-radius: 50px; z-index: 99999; display: none; align-items: center; gap: 16px; font-size: 0.9rem; }
         .admin-active [contenteditable="true"] { outline: 1px dashed var(--accent-neon) !important; background: rgba(0, 240, 255, 0.05); padding: 2px 6px; border-radius: 4px; }
-        .drag-handle { cursor: grab; padding: 4px; color: var(--accent-neon); display: none; text-align: center; background: rgba(0, 0, 0, 0.4); border-bottom: 1px solid var(--border-color); }
+        
+        /* Visible Blueprint Layout Matrix lines */
+        .admin-active .sortable-container {
+            position: relative;
+            background-image: 
+                linear-gradient(rgba(0, 240, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 240, 255, 0.05) 1px, transparent 1px);
+            background-size: 25px 25px;
+            border: 2px dashed rgba(0, 240, 255, 0.25);
+            border-radius: 14px;
+            padding: 24px;
+            min-height: 200px;
+        }
+        
+        .admin-active .sortable-container.drag-over-container {
+            border-color: var(--accent-neon);
+            background-color: rgba(0, 240, 255, 0.02);
+            box-shadow: inset 0 0 20px rgba(0, 240, 255, 0.1);
+        }
+
+        .drag-handle { cursor: grab; padding: 8px; color: #000; font-weight: 700; text-transform: uppercase; font-size: 0.75rem; tracking-spacing: 1px; background: var(--accent-neon); border-bottom: 1px solid var(--border-color); text-align: center; display: none; }
         .admin-active .drag-handle { display: block; }
-        .draggable-item.dragging { opacity: 0.5; border: 2px dashed var(--accent-neon); }
+        .draggable-item.dragging { opacity: 0.4; border: 2px dashed var(--accent-neon) !important; transform: scale(0.98); }
+        
         .admin-btn { background: #222530; color: white; border: 1px solid var(--border-color); padding: 6px 14px; border-radius: 20px; cursor: pointer; font-size: 0.8rem; font-weight: 600; transition: all 0.2s; }
         .admin-btn:hover { border-color: var(--accent-neon); background: rgba(0, 240, 255, 0.1); }
         .admin-edit-config { display: none; margin-top: 8px; width: 100%; text-align: center; }
         .admin-active .admin-edit-config { display: block; }
+        
         #modal-overlay { position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.8); z-index: 100000; display: none; justify-content: center; align-items: center; }
         .modal-box { background: var(--bg-surface); border: 1px solid var(--accent-neon); padding: 32px; border-radius: 12px; max-width: 500px; width: 90%; max-height: 85vh; overflow-y: auto; }
         .modal-box label { display: block; margin-top: 12px; font-size: 0.85rem; color: var(--text-muted); }
@@ -192,19 +214,19 @@
                 </div>
                 <div class="features-grid sortable-container" id="features-sortable">
                     <div class="feature-card glass draggable-item" draggable="false">
-                        <div class="drag-handle"><i class="fa-solid fa-grip-lines"></i> Drag</div>
+                        <div class="drag-handle"><i class="fa-solid fa-grip"></i> Drag Widget</div>
                         <i class="fa-solid fa-magnifying-glass-chart feature-icon"></i>
                         <h3 contenteditable="false">We scout and find talented video editors</h3>
                         <p contenteditable="false">We actively scout the post-production market to source and curate top industry talent.</p>
                     </div>
                     <div class="feature-card glass draggable-item" draggable="false">
-                        <div class="drag-handle"><i class="fa-solid fa-grip-lines"></i> Drag</div>
+                        <div class="drag-handle"><i class="fa-solid fa-grip"></i> Drag Widget</div>
                         <i class="fa-solid fa-shield-halved feature-icon"></i>
                         <h3 contenteditable="false">We verify quality before listing them</h3>
                         <p contenteditable="false">Every dynamic flow, pacing element, and color grade is evaluated before placement.</p>
                     </div>
                     <div class="feature-card glass draggable-item" draggable="false">
-                        <div class="drag-handle"><i class="fa-solid fa-grip-lines"></i> Drag</div>
+                        <div class="drag-handle"><i class="fa-solid fa-grip"></i> Drag Widget</div>
                         <i class="fa-solid fa-bolt feature-icon"></i>
                         <h3 contenteditable="false">We help creators connect with the right editor</h3>
                         <p contenteditable="false">Eliminate complex discovery structures. Pick an architecture, connect instantly, begin building.</p>
@@ -326,7 +348,7 @@
             const grid = document.getElementById('editors-display');
             grid.innerHTML = data.map((ed) => `
                 <div class="editor-card glass draggable-item" draggable="${isAdminMode ? 'true' : 'false'}" data-slug="${ed.slug}">
-                    <div class="drag-handle"><i class="fa-solid fa-grip-lines"></i> Drag to Reorder</div>
+                    <div class="drag-handle"><i class="fa-solid fa-grip"></i> Drag Widget</div>
                     <div class="card-banner" style="background-image: url('${ed.bannerImage}')">
                         <img src="${ed.avatarImage}" class="card-avatar" alt="${ed.name}">
                     </div>
@@ -478,23 +500,30 @@
             }
         });
 
+        /* Improved 2D Proximity Grid Sorting Engine */
         function setupDragAndDrop() {
             const containers = document.querySelectorAll('.sortable-container');
             containers.forEach(container => {
                 container.addEventListener('dragstart', (e) => {
                     const targetItem = e.target.closest('.draggable-item');
-                    if (targetItem) targetItem.classList.add('dragging');
+                    if (targetItem) {
+                        targetItem.classList.add('dragging');
+                    }
                 });
+                
                 container.addEventListener('dragend', (e) => {
                     const targetItem = e.target.closest('.draggable-item');
                     if (targetItem) targetItem.classList.remove('dragging');
+                    containers.forEach(c => c.classList.remove('drag-over-container'));
                     updateDataOrderState();
                 });
+                
                 container.addEventListener('dragover', (e) => {
                     e.preventDefault();
-                    const afterElement = getDragAfterElement(container, e.clientY);
+                    container.classList.add('drag-over-container');
                     const draggingItem = document.querySelector('.dragging');
                     if(draggingItem) {
+                        const afterElement = getDragAfterElement2D(container, e.clientX, e.clientY);
                         if (afterElement == null) {
                             container.appendChild(draggingItem);
                         } else {
@@ -502,20 +531,32 @@
                         }
                     }
                 });
+
+                container.addEventListener('dragleave', () => {
+                    container.classList.remove('drag-over-container');
+                });
             });
         }
 
-        function getDragAfterElement(container, y) {
+        function getDragAfterElement2D(container, x, y) {
             const draggableElements = [...container.querySelectorAll('.draggable-item:not(.dragging)')];
+            
             return draggableElements.reduce((closest, child) => {
                 const box = child.getBoundingClientRect();
-                const offset = y - box.top - box.height / 2;
-                if (offset < 0 && offset > closest.offset) {
-                    return { offset: offset, element: child };
-                } else {
-                    return closest;
+                const centerX = box.left + box.width / 2;
+                const centerY = box.top + box.height / 2;
+                // Calculate distance using Euclidean coordinates
+                const distance = Math.hypot(x - centerX, y - centerY);
+                
+                if (distance < closest.distance) {
+                    if (x < centerX) {
+                        return { distance: distance, element: child };
+                    } else {
+                        return { distance: distance, element: child.nextElementSibling };
+                    }
                 }
-            }, { offset: Number.NEGATIVE_INFINITY }).element;
+                return closest;
+            }, { distance: Number.POSITIVE_INFINITY }).element;
         }
 
         function updateDataOrderState() {
