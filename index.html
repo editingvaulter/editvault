@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EditVault | Premium Video Editors Marketplace</title>
+    <meta name="description" content="Discover handpicked professional video editors. Premium quality, fast turnaround, and master storytelling.">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Syncopate:wght@700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-base: #08080a;
+            --bg-surface: #121318;
+            --bg-card: rgba(22, 24, 30, 0.7);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --accent-neon: #00f0ff;
+            --accent-purple: #7000ff;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --glow: cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth; }
+        body { background-color: var(--bg-base); color: var(--text-main); font-family: 'Inter', sans-serif; overflow-x: hidden; line-height: 1.6; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-base); }
+        ::-webkit-scrollbar-thumb { background: #222530; border-radius: 4px; border: 1px solid var(--border-color); }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent-neon); }
+
+        .glass { background: var(--bg-card); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid var(--border-color); border-radius: 12px; }
+        .neon-text { color: var(--accent-neon); text-shadow: 0 0 10px rgba(0, 240, 255, 0.3); }
+        .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+        header { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; border-bottom: 1px solid var(--border-color); transition: all 0.3s ease; }
+        header.scrolled { background: rgba(8, 8, 10, 0.85); backdrop-filter: blur(12px); }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; height: 80px; }
+        .logo { font-family: 'Syncopate', sans-serif; font-size: 1.5rem; text-transform: uppercase; letter-spacing: 2px; text-decoration: none; color: var(--text-main); display: flex; align-items: center; gap: 10px; }
+        .logo span { color: var(--accent-neon); }
+        .nav-links { display: flex; gap: 32px; list-style: none; }
+        .nav-links a { text-decoration: none; color: var(--text-muted); font-weight: 500; font-size: 0.95rem; transition: color 0.2s ease; }
+        .nav-links a:hover, .nav-links a.active { color: var(--accent-neon); }
+
+        .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 28px; border-radius: 6px; font-weight: 600; text-decoration: none; cursor: pointer; transition: all 0.3s var(--glow); font-size: 0.95rem; }
+        .btn-primary { background: linear-gradient(135deg, var(--accent-neon), var(--accent-purple)); color: #000; border: none; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0, 240, 255, 0.4); }
+        .btn-secondary { background: transparent; color: var(--text-main); border: 1px solid var(--border-color); }
+        .btn-secondary:hover { background: rgba(255, 255, 255, 0.05); border-color: var(--text-muted); }
+
+        .hero { padding: 200px 0 120px 0; position: relative; text-align: center; background: radial-gradient(circle at 50% 30%, rgba(112, 0, 255, 0.15), transparent 60%); }
+        .hero h1 { font-size: 4rem; font-weight: 700; line-height: 1.1; letter-spacing: -1px; margin-bottom: 24px; max-width: 900px; margin-left: auto; margin-right: auto; }
+        .hero p { font-size: 1.25rem; color: var(--text-muted); max-width: 650px; margin: 0 auto 40px auto; }
+        .hero-ctas { display: flex; justify-content: center; gap: 16px; }
+
+        .section-padding { padding: 100px 0; }
+        .section-header { text-align: center; margin-bottom: 60px; }
+        .section-header h2 { font-size: 2.5rem; letter-spacing: -0.5px; margin-bottom: 16px; }
+        .section-header p { color: var(--text-muted); max-width: 500px; margin: 0 auto; }
+        .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .feature-card { padding: 40px 32px; transition: all 0.3s ease; }
+        .feature-card:hover { transform: translateY(-4px); border-color: var(--accent-neon); }
+        .feature-icon { font-size: 2rem; background: linear-gradient(135deg, var(--accent-neon), var(--accent-purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 24px; }
+        .feature-card h3 { font-size: 1.3rem; margin-bottom: 12px; }
+        .feature-card p { color: var(--text-muted); font-size: 0.95rem; }
+
+        .filter-container { display: flex; flex-direction: column; gap: 24px; margin-bottom: 40px; }
+        .search-wrapper { position: relative; max-width: 500px; width: 100%; margin: 0 auto; }
+        .search-wrapper input { width: 100%; padding: 14px 20px 14px 48px; background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: 30px; color: var(--text-main); font-size: 1rem; outline: none; transition: border-color 0.2s; }
+        .search-wrapper input:focus { border-color: var(--accent-neon); }
+        .search-wrapper i { position: absolute; left: 18px; top: 50%; transform: translateY(-50%); color: var(--text-muted); }
+        .category-tabs { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+        .tab-btn { background: var(--bg-surface); border: 1px solid var(--border-color); color: var(--text-muted); padding: 8px 20px; border-radius: 20px; cursor: pointer; font-size: 0.9rem; font-weight: 500; transition: all 0.2s; }
+        .tab-btn:hover, .tab-btn.active { background: rgba(0, 240, 255, 0.1); color: var(--accent-neon); border-color: var(--accent-neon); }
+
+        .editors-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 32px; }
+        .editor-card { overflow: hidden; transition: all 0.4s var(--glow); display: flex; flex-direction: column; }
+        .editor-card:hover { transform: translateY(-8px); border-color: rgba(255, 255, 255, 0.2); box-shadow: 0 12px 40px rgba(0,0,0,0.5); }
+        .card-banner { position: relative; height: 180px; background-size: cover; background-position: center; }
+        .card-banner::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 60px; background: linear-gradient(to top, var(--bg-surface), transparent); }
+        .card-avatar { width: 80px; height: 80px; border-radius: 50%; border: 3px solid var(--bg-surface); position: absolute; bottom: -30px; left: 24px; z-index: 2; object-fit: cover; }
+        .card-body { padding: 48px 24px 24px 24px; flex-grow: 1; display: flex; flex-direction: column; background: var(--bg-surface); }
+        .card-header-info { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+        .card-body h3 { font-size: 1.4rem; }
+        .rating { color: #ffb800; font-size: 0.9rem; display: flex; align-items: center; gap: 4px; }
+        .specialization { color: var(--accent-neon); font-size: 0.85rem; text-transform: uppercase; font-weight: 600; letter-spacing: 1px; margin-bottom: 16px; }
+        .card-body p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .card-footer { margin-top: auto; padding-top: 20px; border-top: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; }
+        .price-info span { display: block; font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; }
+        .price-info strong { font-size: 1.2rem; color: var(--text-main); }
+
+        #profile-view { padding-top: 140px; display: none; }
+        .profile-layout { display: grid; grid-template-columns: 4fr 8fr; gap: 40px; align-items: start; }
+        .sticky-sidebar { position: sticky; top: 120px; padding: 32px; }
+        .profile-img-big { width: 140px; height: 140px; border-radius: 50%; object-fit: cover; border: 3px solid var(--border-color); margin-bottom: 24px; }
+        .profile-sidebar h1 { font-size: 2rem; margin-bottom: 4px; }
+        .profile-sidebar .spec-tag { color: var(--accent-neon); font-weight: 600; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; margin-bottom: 16px; display: block; }
+        .meta-list { margin: 24px 0; list-style: none; display: flex; flex-direction: column; gap: 12px; }
+        .meta-list li { display: flex; justify-content: space-between; font-size: 0.95rem; }
+        .meta-list li span { color: var(--text-muted); }
+        .tags-container { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+        .tag { background: rgba(255,255,255,0.05); border: 1px solid var(--border-color); padding: 4px 12px; border-radius: 4px; font-size: 0.8rem; color: var(--text-muted); }
+        .portfolio-showcase h2 { font-size: 1.75rem; margin-bottom: 24px; }
+        .video-grid { display: grid; grid-template-columns: 1fr; gap: 32px; }
+        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; border: 1px solid var(--border-color); }
+        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+
+        footer { border-top: 1px solid var(--border-color); background: var(--bg-surface); padding: 80px 0 40px 0; margin-top: 120px; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 60px; margin-bottom: 60px; }
+        .footer-brand p { color: var(--text-muted); margin-top: 16px; max-width: 320px; }
+        .footer-links h4 { margin-bottom: 20px; font-size: 1.1rem; }
+        .footer-links ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+        .footer-links a { color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+        .footer-links a:hover { color: var(--accent-neon); }
+        .contact-methods li { display: flex; align-items: center; gap: 12px; color: var(--text-muted); }
+        .contact-methods i { color: var(--accent-neon); }
+        .footer-bottom { padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.05); text-align: center; color: var(--text-muted); font-size: 0.9rem; }
+
+        @media (max-width: 992px) { .hero h1 { font-size: 3rem; } .features-grid { grid-template-columns: 1fr; } .profile-layout { grid-template-columns: 1fr; } .sticky-sidebar { position: static; } }
+        @media (max-width: 768px) { .nav-links { display: none; } .footer-grid { grid-template-columns: 1fr; gap: 40px; } .hero h1 { font-size: 2.25rem; } .hero p { font-size: 1rem; } }
+
+        /* --- ADMIN ENGINE STYLES --- */
+        .admin-bar { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: rgba(10, 11, 14, 0.95); border: 2px solid var(--accent-neon); box-shadow: 0 0 30px rgba(0, 240, 255, 0.2); padding: 12px 24px; border-radius: 50px; z-index: 99999; display: none; align-items: center; gap: 16px; font-size: 0.9rem; }
+        .admin-active [contenteditable="true"] { outline: 1px dashed var(--accent-neon) !important; background: rgba(0, 240, 255, 0.05); padding: 2px 6px; border-radius: 4px; }
+        .drag-handle { cursor: grab; padding: 4px; color: var(--accent-neon); display: none; text-align: center; background: rgba(0, 0, 0, 0.4); border-bottom: 1px solid var(--border-color); }
+        .admin-active .drag-handle { display: block; }
+        .draggable-item.dragging { opacity: 0.5; border: 2px dashed var(--accent-neon); }
+        .admin-btn { background: #222530; color: white; border: 1px solid var(--border-color); padding: 6px 14px; border-radius: 20px; cursor: pointer; font-size: 0.8rem; font-weight: 600; transition: all 0.2s; }
+        .admin-btn:hover { border-color: var(--accent-neon); background: rgba(0, 240, 255, 0.1); }
+        .admin-edit-config { display: none; margin-top: 8px; width: 100%; text-align: center; }
+        .admin-active .admin-edit-config { display: block; }
+        #modal-overlay { position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.8); z-index: 100000; display: none; justify-content: center; align-items: center; }
+        .modal-box { background: var(--bg-surface); border: 1px solid var(--accent-neon); padding: 32px; border-radius: 12px; max-width: 500px; width: 90%; max-height: 85vh; overflow-y: auto; }
+        .modal-box label { display: block; margin-top: 12px; font-size: 0.85rem; color: var(--text-muted); }
+        .modal-box input, .modal-box textarea, .modal-box select { width: 100%; padding: 8px; background: var(--bg-base); border: 1px solid var(--border-color); color: white; border-radius: 4px; margin-top: 4px; }
+    </style>
+</head>
+<body>
+
+    <div class="admin-bar" id="adminControlBar">
+        <span style="font-weight:700; color:var(--accent-neon);"><i class="fa-solid fa-screwdriver-wrenches"></i> Live Editor Engine</span>
+        <button class="admin-btn" onclick="addNewEditorProfile()"><i class="fa-solid fa-user-plus"></i> Add New Profile</button>
+        <button class="admin-btn" style="background:var(--accent-purple);" onclick="exportConfig()"><i class="fa-solid fa-cloud-arrow-up"></i> Export Config to GitHub</button>
+        <button class="admin-btn" style="border-color:#ff0055;" onclick="toggleAdminMode()">Exit</button>
+    </div>
+
+    <div id="modal-overlay">
+        <div class="modal-box glass">
+            <h3 id="modal-title" style="margin-bottom:12px;">Edit Editor Meta Parameters</h3>
+            <div id="modal-fields"></div>
+            <div style="margin-top:20px; display:flex; gap:12px; justify-content:flex-end;">
+                <button class="admin-btn" style="background:#ff0055; margin-right:auto;" id="modal-delete-btn">Delete Profile</button>
+                <button class="admin-btn" onclick="closeModal()">Cancel</button>
+                <button class="admin-btn" style="background:var(--accent-neon); color:black;" id="modal-save-btn">Apply Structural Settings</button>
+            </div>
+        </div>
+    </div>
+
+    <header id="header">
+        <div class="container nav-container">
+            <a href="#" class="logo" onclick="routeToHome(event)">
+                <i class="fa-solid fa-clapperboard"></i> <span contenteditable="true" id="txt-logo-1">Edit</span><span id="txt-logo-2" style="color:var(--accent-neon);" contenteditable="true">Vault</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#" id="nav-home" onclick="routeToHome(event)">Home</a></li>
+                <li><a href="#marketplace" id="nav-browse">Browse Editors</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <a href="#marketplace" class="btn btn-secondary" style="padding: 8px 16px; font-size: 0.85rem;" contenteditable="true" id="txt-nav-cta">Hire Crew</a>
+        </div>
+    </header>
+
+    <main id="home-view">
+        <section class="hero">
+            <div class="container">
+                <h1 contenteditable="true" id="txt-hero-title">Loading...</h1>
+                <p contenteditable="true" id="txt-hero-subtitle">Connecting to Editor Vault Database...</p>
+                <div class="hero-ctas">
+                    <a href="#marketplace" class="btn btn-primary" contenteditable="true" id="txt-hero-cta1">Explore Editors <i class="fa-solid fa-arrow-right"></i></a>
+                    <a href="#marketplace" class="btn btn-secondary" contenteditable="true" id="txt-hero-cta2">View Portfolio</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-padding" style="background-color: var(--bg-surface);">
+            <div class="container">
+                <div class="section-header">
+                    <h2 contenteditable="true" id="txt-features-title">What we do</h2>
+                    <p contenteditable="true" id="txt-features-subtitle">How we guarantee your next edit is a cinematic masterpiece.</p>
+                </div>
+                <div class="features-grid sortable-container" id="features-sortable">
+                    <div class="feature-card glass draggable-item" draggable="false">
+                        <div class="drag-handle"><i class="fa-solid fa-grip-lines"></i> Drag</div>
+                        <i class="fa-solid fa-magnifying-glass-chart feature-icon"></i>
+                        <h3 contenteditable="true">We scout and find talented video editors</h3>
+                        <p contenteditable="true">We actively scout the post-production market to source and curate top industry talent.</p>
+                    </div>
+                    <div class="feature-card glass draggable-item" draggable="false">
+                        <div class="drag-handle"><i class="fa-solid fa-grip-lines"></i> Drag</div>
+                        <i class="fa-solid fa-shield-halved feature-icon"></i>
+                        <h3 contenteditable="true">We verify quality before listing them</h3>
+                        <p contenteditable="true">Every dynamic flow, pacing element, and color grade is evaluated before placement.</p>
+                    </div>
+                    <div class="feature-card glass draggable-item" draggable="false">
+                        <div class="drag-handle"><i class="fa-solid fa-grip-lines"></i> Drag</div>
+                        <i class="fa-solid fa-bolt feature-icon"></i>
+                        <h3 contenteditable="true">We help creators connect with the right editor</h3>
+                        <p contenteditable="true">Eliminate complex discovery structures. Pick an architecture, connect instantly, begin building.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="marketplace" class="section-padding">
+            <div class="container">
+                <div class="section-header">
+                    <h2 contenteditable="true" id="txt-market-title">Our Roster of Master Editors</h2>
+                    <p contenteditable="true" id="txt-market-subtitle">Filter through verified industry professionals to locate your perfect content companion.</p>
+                </div>
+                
+                <div class="filter-container">
+                    <div class="search-wrapper">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" id="editor-search" placeholder="Search by name, skills, or style..." oninput="filterEditors()">
+                    </div>
+                    <div class="category-tabs" id="category-tabs">
+                        <button class="tab-btn active" onclick="filterCategory('All', this)">All Editors</button>
+                        <button class="tab-btn" onclick="filterCategory('Gaming', this)">Gaming</button>
+                        <button class="tab-btn" onclick="filterCategory('Shorts/Reels', this)">Shorts/Reels</button>
+                        <button class="tab-btn" onclick="filterCategory('Documentary', this)">Documentary</button>
+                        <button class="tab-btn" onclick="filterCategory('Cinematic', this)">Cinematic</button>
+                        <button class="tab-btn" onclick="filterCategory('YouTube Long-form', this)">YouTube Long-form</button>
+                    </div>
+                </div>
+
+                <div class="editors-grid sortable-container" id="editors-display"></div>
+            </div>
+        </section>
+    </main>
+
+    <main id="profile-view">
+        <div class="container">
+            <div class="profile-layout" id="profile-data-container"></div>
+        </div>
+    </main>
+
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="logo" onclick="routeToHome(event)">
+                        <i class="fa-solid fa-clapperboard"></i> Edit<span>Vault</span>
+                    </a>
+                    <p contenteditable="true" id="txt-footer-desc">A highly secure, meticulously hand-curated marketplace showcasing premier post-production visual talent across the digital spectrum.</p>
+                </div>
+                <div class="footer-links">
+                    <h4 contenteditable="true" id="txt-footer-h1">Direct Channels</h4>
+                    <ul class="contact-methods">
+                        <li><i class="fa-solid fa-phone"></i> <span contenteditable="true" id="txt-footer-phone">+91 8660342071</span></li>
+                        <li><i class="fa-solid fa-envelope"></i> <span contenteditable="true" id="txt-footer-email">editingvault@gmail.com</span></li>
+                        <li><i class="fa-solid fa-location-dot"></i> <span contenteditable="true" id="txt-footer-loc">Bengaluru, KA, India</span></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4 contenteditable="true" id="txt-footer-h2">Institutional</h4>
+                    <ul>
+                        <li><a href="#" onclick="routeToHome(event)">Home Ecosystem</a></li>
+                        <li><a href="#marketplace">Browse Directory</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 EditVault. Curated meticulously by Administration. <i class="fa-solid fa-lock" style="cursor:pointer;" onclick="toggleAdminMode()" title="Admin Entry Configuration Control Toggle"></i></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let EDITORS_DATA = [];
+        let currentCategory = "All";
+        let isAdminMode = false;
+
+        // FETCH JSON CONFIGURATION DYNAMICALLY
+        async function loadConfig() {
+            try {
+                const response = await fetch('editvault-config.json');
+                if (!response.ok) throw new Error("JSON file not found.");
+                
+                const config = await response.json();
+                
+                // Inject Text from JSON
+                document.getElementById('txt-logo-1').innerText = config.logo1 || "Edit";
+                document.getElementById('txt-logo-2').innerText = config.logo2 || "Vault";
+                document.getElementById('txt-nav-cta').innerText = config.navCta || "Hire Crew";
+                document.getElementById('txt-hero-title').innerText = config.heroTitle || "Find the Best Video Editors";
+                document.getElementById('txt-hero-subtitle').innerText = config.heroSubtitle || "Premium quality content.";
+                document.getElementById('txt-hero-cta1').innerHTML = `${config.heroCta1} <i class="fa-solid fa-arrow-right"></i>`;
+                document.getElementById('txt-hero-cta2').innerText = config.heroCta2 || "View Portfolio";
+                document.getElementById('txt-features-title').innerText = config.featuresTitle || "What we do";
+                document.getElementById('txt-features-subtitle').innerText = config.featuresSubtitle || "How we guarantee quality.";
+                document.getElementById('txt-market-title').innerText = config.marketTitle || "Our Master Editors";
+                document.getElementById('txt-market-subtitle').innerText = config.marketSubtitle || "Filter and find.";
+                document.getElementById('txt-footer-desc').innerText = config.footerDesc || "Secure marketplace.";
+                document.getElementById('txt-footer-phone').innerText = config.footerPhone || "+91 8660342071";
+                document.getElementById('txt-footer-email').innerText = config.footerEmail || "editingvault@gmail.com";
+                document.getElementById('txt-footer-loc').innerText = config.footerLoc || "Bengaluru, India";
+
+                // Load Editors
+                EDITORS_DATA = config.editors || [];
+                renderMarketplace(EDITORS_DATA);
+                handleRouting();
+
+            } catch (error) {
+                console.error("Error loading JSON:", error);
+                document.getElementById('txt-hero-title').innerText = "Local Environment Warning";
+                document.getElementById('txt-hero-subtitle').innerText = "Your browser blocks reading local JSON files directly. To test the live changes, push these files to GitHub Pages, or use a local Live Server (like the VS Code Live Server extension).";
+            }
+        }
+
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) header.classList.add('scrolled');
+            else header.classList.remove('scrolled');
+        });
+
+        function renderMarketplace(data) {
+            const grid = document.getElementById('editors-display');
+            grid.innerHTML = data.map((ed, index) => `
+                <div class="editor-card glass draggable-item" draggable="false" data-index="${index}">
+                    <div class="drag-handle"><i class="fa-solid fa-grip-lines"></i> Drag to Reorder</div>
+                    <div class="card-banner" style="background-image: url('${ed.bannerImage}')">
+                        <img src="${ed.avatarImage}" class="card-avatar" alt="${ed.name}">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-header-info">
+                            <h3>${ed.name}</h3>
+                            <div class="rating"><i class="fa-solid fa-star"></i> ${ed.rating}</div>
+                        </div>
+                        <div class="specialization">${ed.specialization}</div>
+                        <p>${ed.bio}</p>
+                        <button class="admin-btn admin-edit-config" onclick="openProfileModal(${index}, event)"><i class="fa-solid fa-gear"></i> Edit Profile Config</button>
+                        <div class="card-footer">
+                            <div class="price-info">
+                                <span>Rate card</span>
+                                <strong>${ed.pricing.split('/')[0]}</strong>
+                            </div>
+                            <a href="#/editors/${ed.slug}" class="btn btn-primary" style="padding: 8px 16px; font-size:0.85rem;">View Profile</a>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            setupDragAndDrop();
+        }
+
+        function filterEditors() {
+            const searchVal = document.getElementById('editor-search').value.toLowerCase();
+            const filtered = EDITORS_DATA.filter(ed => {
+                const matchesSearch = ed.name.toLowerCase().includes(searchVal) || 
+                                      ed.skills.some(s => s.toLowerCase().includes(searchVal)) ||
+                                      ed.tags.some(t => t.toLowerCase().includes(searchVal));
+                const matchesCat = currentCategory === "All" || ed.specialization === currentCategory;
+                return matchesSearch && matchesCat;
+            });
+            renderMarketplace(filtered);
+        }
+
+        function filterCategory(cat, btnEl) {
+            currentCategory = cat;
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            btnEl.classList.add('active');
+            filterEditors();
+        }
+
+        function renderProfileView(slug) {
+            const editor = EDITORS_DATA.find(ed => ed.slug === slug);
+            const container = document.getElementById('profile-data-container');
+            if(!editor) {
+                container.innerHTML = `<h2>Profile architecture asset not found inside standard vault data records.</h2>`;
+                return;
+            }
+            container.innerHTML = `
+                <div class="profile-sidebar glass sticky-sidebar">
+                    <img src="${editor.avatarImage}" class="profile-img-big" alt="${editor.name}">
+                    <h1>${editor.name}</h1>
+                    <span class="spec-tag">${editor.specialization}</span>
+                    <div class="rating" style="font-size:1.1rem; margin-bottom: 20px;">
+                        <i class="fa-solid fa-star"></i> ${editor.rating} (${editor.reviewsCount} verified audits)
+                    </div>
+                    <p style="color: var(--text-muted); font-size:0.95rem; margin-bottom:24px;">${editor.bio}</p>
+                    <hr style="border:0; border-top:1px solid var(--border-color); margin:20px 0;">
+                    <ul class="meta-list">
+                        <li><span>Experience:</span> <strong>${editor.experience}</strong></li>
+                        <li><span>Turnaround:</span> <strong>${editor.turnaround}</strong></li>
+                        <li><span>Est. Cost:</span> <strong class="neon-text">${editor.pricing}</strong></li>
+                    </ul>
+                    <a href="mailto:${document.getElementById('txt-footer-email').innerText}?subject=Inquiry: Hire ${editor.name}" class="btn btn-primary" style="width:100%; justify-content:center; margin-bottom:12px;">Initiate Assignment Offer</a>
+                    <a href="tel:${document.getElementById('txt-footer-phone').innerText}" class="btn btn-secondary" style="width:100%; justify-content:center;"><i class="fa-solid fa-phone"></i> Urgent Setup Call</a>
+                </div>
+                <div class="profile-content">
+                    <div class="portfolio-showcase glass" style="padding:40px; margin-bottom:32px;">
+                        <h2>Technical Proficiencies & Toolkit</h2>
+                        <div class="tags-container" style="margin-bottom:32px;">
+                            ${editor.skills.map(s => `<span class="tag" style="background:rgba(0,240,255,0.05); border-color:rgba(0,240,255,0.2); color:#fff; font-weight:500;">${s}</span>`).join('')}
+                        </div>
+                        <h2>Stylistic Directives</h2>
+                        <div class="tags-container">
+                            ${editor.tags.map(t => `<span class="tag">${t}</span>`).join('')}
+                        </div>
+                    </div>
+                    <div class="portfolio-showcase glass" style="padding:40px;">
+                        <h2>Selected Production Reels</h2>
+                        <div class="video-grid">
+                            ${editor.videos.map(v => `
+                                <div class="video-wrapper">
+                                    <iframe src="${v}" allowfullscreen></iframe>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function handleRouting() {
+            const hash = window.location.hash;
+            const homeView = document.getElementById('home-view');
+            const profileView = document.getElementById('profile-view');
+            const homeNav = document.getElementById('nav-home');
+            
+            if(hash.startsWith('#/editors/')) {
+                const slug = hash.replace('#/editors/', '');
+                homeView.style.display = 'none';
+                profileView.style.display = 'block';
+                if(homeNav) homeNav.classList.remove('active');
+                renderProfileView(slug);
+                window.scrollTo(0,0);
+            } else {
+                profileView.style.display = 'none';
+                homeView.style.display = 'block';
+                if(homeNav) homeNav.classList.add('active');
+                if(hash && !hash.startsWith('#/')) {
+                    const el = document.querySelector(hash);
+                    if(el) el.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+        }
+
+        function routeToHome(e) {
+            e.preventDefault();
+            window.location.hash = '';
+        }
+
+        function toggleAdminMode() {
+            isAdminMode = !isAdminMode;
+            const bar = document.getElementById('adminControlBar');
+            if(isAdminMode) {
+                document.body.classList.add('admin-active');
+                bar.style.display = 'flex';
+                document.querySelectorAll('.draggable-item').forEach(item => item.setAttribute('draggable', 'true'));
+            } else {
+                document.body.classList.remove('admin-active');
+                bar.style.display = 'none';
+                document.querySelectorAll('.draggable-item').forEach(item => item.setAttribute('draggable', 'false'));
+            }
+        }
+
+        window.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'e') {
+                e.preventDefault();
+                toggleAdminMode();
+            }
+        });
+
+        function setupDragAndDrop() {
+            const containers = document.querySelectorAll('.sortable-container');
+            containers.forEach(container => {
+                container.addEventListener('dragstart', (e) => {
+                    const targetItem = e.target.closest('.draggable-item');
+                    if (targetItem) targetItem.classList.add('dragging');
+                });
+                container.addEventListener('dragend', (e) => {
+                    const targetItem = e.target.closest('.draggable-item');
+                    if (targetItem) targetItem.classList.remove('dragging');
+                    updateDataOrderState();
+                });
+                container.addEventListener('dragover', (e) => {
+                    e.preventDefault();
+                    const afterElement = getDragAfterElement(container, e.clientY);
+                    const draggingItem = document.querySelector('.dragging');
+                    if(draggingItem) {
+                        if (afterElement == null) {
+                            container.appendChild(draggingItem);
+                        } else {
+                            container.insertBefore(draggingItem, afterElement);
+                        }
+                    }
+                });
+            });
+        }
+
+        function getDragAfterElement(container, y) {
+            const draggableElements = [...container.querySelectorAll('.draggable-item:not(.dragging)')];
+            return draggableElements.reduce((closest, child) => {
+                const box = child.getBoundingClientRect();
+                const offset = y - box.top - box.height / 2;
+                if (offset < 0 && offset > closest.offset) {
+                    return { offset: offset, element: child };
+                } else {
+                    return closest;
+                }
+            }, { offset: Number.NEGATIVE_INFINITY }).element;
+        }
+
+        function updateDataOrderState() {
+            const renderedCards = [...document.querySelectorAll('#editors-display .editor-card')];
+            if(renderedCards.length === 0) return;
+            let newOrderedData = [];
+            renderedCards.forEach(card => {
+                const index = card.getAttribute('data-index');
+                if(EDITORS_DATA[index]) newOrderedData.push(EDITORS_DATA[index]);
+            });
+            EDITORS_DATA = newOrderedData;
+            renderMarketplace(EDITORS_DATA);
+        }
+
+        function openProfileModal(index, event) {
+            if(event) event.stopPropagation();
+            const ed = EDITORS_DATA[index];
+            const fieldsContainer = document.getElementById('modal-fields');
+            document.getElementById('modal-title').innerText = `Configure Parameters: ${ed.name}`;
+            
+            fieldsContainer.innerHTML = `
+                <label>Editor Name</label><input type="text" id="m-name" value="${ed.name}">
+                <label>Specialization Category</label>
+                <select id="m-spec">
+                    <option ${ed.specialization==='Gaming'?'selected':''}>Gaming</option>
+                    <option ${ed.specialization==='Shorts/Reels'?'selected':''}>Shorts/Reels</option>
+                    <option ${ed.specialization==='Documentary'?'selected':''}>Documentary</option>
+                    <option ${ed.specialization==='Cinematic'?'selected':''}>Cinematic</option>
+                    <option ${ed.specialization==='YouTube Long-form'?'selected':''}>YouTube Long-form</option>
+                </select>
+                <label>Pricing Structure Tier</label><input type="text" id="m-price" value="${ed.pricing}">
+                <label>Bio Presentation</label><textarea id="m-bio" rows="3">${ed.bio}</textarea>
+                <label>Avatar Photo URL</label><input type="text" id="m-avatar" value="${ed.avatarImage}">
+                <label>Cover Banner URL</label><input type="text" id="m-banner" value="${ed.bannerImage}">
+                <label>Experience Duration</label><input type="text" id="m-exp" value="${ed.experience}">
+                <label>Turnaround Metrics</label><input type="text" id="m-turn" value="${ed.turnaround}">
+                <label>Skills Matrix (Comma Separated)</label><input type="text" id="m-skills" value="${ed.skills.join(', ')}">
+                <label>Stylistic Design Tags (Comma Separated)</label><input type="text" id="m-tags" value="${ed.tags.join(', ')}">
+                <label>YouTube Embed Video URLs (Comma Separated)</label><input type="text" id="m-videos" value="${ed.videos.join(', ')}">
+            `;
+
+            document.getElementById('modal-delete-btn').onclick = () => {
+                EDITORS_DATA.splice(index, 1);
+                closeModal();
+                renderMarketplace(EDITORS_DATA);
+            };
+
+            document.getElementById('modal-save-btn').onclick = () => {
+                ed.name = document.getElementById('m-name').value;
+                ed.slug = ed.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
+                ed.specialization = document.getElementById('m-spec').value;
+                ed.pricing = document.getElementById('m-price').value;
+                ed.bio = document.getElementById('m-bio').value;
+                ed.avatarImage = document.getElementById('m-avatar').value;
+                ed.bannerImage = document.getElementById('m-banner').value;
+                ed.experience = document.getElementById('m-exp').value;
+                ed.turnaround = document.getElementById('m-turn').value;
+                ed.skills = document.getElementById('m-skills').value.split(',').map(s=>s.trim());
+                ed.tags = document.getElementById('m-tags').value.split(',').map(t=>t.trim());
+                ed.videos = document.getElementById('m-videos').value.split(',').map(v=>v.trim());
+                closeModal();
+                renderMarketplace(EDITORS_DATA);
+            };
+
+            document.getElementById('modal-overlay').style.display = 'flex';
+        }
+
+        function addNewEditorProfile() {
+            const template = {
+                name: "New Professional Editor",
+                slug: "new-professional-editor-" + Date.now(),
+                rating: 5.0,
+                reviewsCount: 1,
+                specialization: "Cinematic",
+                bannerImage: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=800&q=80",
+                avatarImage: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=300&q=80",
+                bio: "Click edit configuration profile button to transform these fields.",
+                experience: "3 Years",
+                turnaround: "3 Days",
+                pricing: "From $300/video",
+                skills: ["Premiere Pro"],
+                tags: ["Cinematic Narrative"],
+                videos: ["https://www.youtube.com/embed/dQw4w9WgXcQ"],
+                socials: { twitter: "#", instagram: "#", linkedin: "#" }
+            };
+            EDITORS_DATA.unshift(template);
+            renderMarketplace(EDITORS_DATA);
+            openProfileModal(0);
+        }
+
+        function closeModal() { document.getElementById('modal-overlay').style.display = 'none'; }
+
+        function exportConfig() {
+            const configObject = {
+                logo1: document.getElementById('txt-logo-1').innerText,
+                logo2: document.getElementById('txt-logo-2').innerText,
+                navCta: document.getElementById('txt-nav-cta').innerText,
+                heroTitle: document.getElementById('txt-hero-title').innerText,
+                heroSubtitle: document.getElementById('txt-hero-subtitle').innerText,
+                heroCta1: document.getElementById('txt-hero-cta1').innerText.replace('>', '').trim(),
+                heroCta2: document.getElementById('txt-hero-cta2').innerText,
+                featuresTitle: document.getElementById('txt-features-title').innerText,
+                featuresSubtitle: document.getElementById('txt-features-subtitle').innerText,
+                marketTitle: document.getElementById('txt-market-title').innerText,
+                marketSubtitle: document.getElementById('txt-market-subtitle').innerText,
+                footerDesc: document.getElementById('txt-footer-desc').innerText,
+                footerPhone: document.getElementById('txt-footer-phone').innerText,
+                footerEmail: document.getElementById('txt-footer-email').innerText,
+                footerLoc: document.getElementById('txt-footer-loc').innerText,
+                editors: EDITORS_DATA
+            };
+
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(configObject, null, 4));
+            const downloadAnchor = document.createElement('a');
+            downloadAnchor.setAttribute("href", dataStr);
+            downloadAnchor.setAttribute("download", "editvault-config.json");
+            document.body.appendChild(downloadAnchor);
+            downloadAnchor.click();
+            downloadAnchor.remove();
+
+            alert("EXPORT SUCCESS!\n\nJust replace your old 'editvault-config.json' file in your GitHub folder with this new one to apply changes permanently.");
+        }
+
+        window.addEventListener('hashchange', handleRouting);
+        window.addEventListener('DOMContentLoaded', loadConfig);
+    </script>
+</body>
+</html>
