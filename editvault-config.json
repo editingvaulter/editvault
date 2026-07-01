@@ -19,54 +19,56 @@
             "name": "Vinod K",
             "slug": "vinod-k",
             "rating": 4.9,
-            "reviewsCount": 38,
+            "reviewsCount": 0,
             "specialization": "Documentary",
             "bannerImage": "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=800&q=80",
             "avatarImage": "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_profile_original/v1/attachments/profile/photo/e8f38eced53e07a5763fc96459979233-1751446897408/61791ba1-5f61-4101-bb76-16773f74707b.png",
             "bio": "Creative visual storyteller specializing in talking-head retention engineering, stylized color grading, and clean asset integration. Over 4 years of professional experience transforming raw footage into high-engagement content for creators and brands.",
             "experience": "4+ Years",
             "turnaround": "3-5 Days",
-            "pricing": "From $600/project",
+            "pricing": "From $50/project",
             "skills": [
                 "Premiere Pro",
                 "After Effects"
             ],
             "tags": [
                 "Cinematic",
-                "Retentive Narrative",
-                ""
+                "Retentive Narrative"
             ],
             "videos": [
-                "https://www.youtube.com/embed/YeBOLZ13VgM"
+                "https://www.youtube.com/embed/4JQms5x4cfM",
+                "https://www.youtube.com/embed/-aW_8pOJcH4",
+                "https://www.youtube.com/embed/OGAamYcQL7k"
             ],
             "socials": {
                 "twitter": "#",
                 "instagram": "#",
                 "linkedin": "#"
-            }
+            },
+            "posX": 150,
+            "posY": 25
         },
         {
-            "name": "Zephyr Gaming",
-            "slug": "zephyr-gaming",
-            "rating": 5,
-            "reviewsCount": 74,
-            "specialization": "Gaming",
+            "name": "Deepanshu G",
+            "slug": "deepanshu-g",
+            "rating": 4.7,
+            "reviewsCount": 0,
+            "specialization": "Documentary",
             "bannerImage": "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&w=800&q=80",
-            "avatarImage": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80",
-            "bio": "Specializing in modern fast-paced multi-perspective gaming narratives. Expert level comedic timing, spatial map design track mockups, sound element reinforcement, and intense frame tracking animation.",
-            "experience": "4 Years",
+            "avatarImage": "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_profile_original/v1/attachments/profile/photo/4f9f6bd83c10f4eb5a337372ed461128-1768485763989/3bcd69aa-2a54-40b3-8d7d-e19ea1850607.png",
+            "bio": "Creative visual storyteller specializing in high-retention editing for Finance and Real Estate. With 3 years of experience, I excel at crafting authoritative content and immersive property tours through advanced storytelling, precise color grading, and dynamic asset integration.",
+            "experience": "3+ Years",
             "turnaround": "2-3 Days",
-            "pricing": "From $400/video",
+            "pricing": "From $30/video",
             "skills": [
-                "Premiere Pro",
-                "After Effects",
-                "Blender 3D",
-                "Photoshop"
+                "Adobe Premiere",
+                "Filmora 15"
             ],
             "tags": [
                 "High Energy",
-                "Memes/VFX",
-                "Retention Design"
+                "Retention Design",
+                "Business",
+                "finance"
             ],
             "videos": [
                 "https://www.youtube.com/embed/dQw4w9WgXcQ"
@@ -75,38 +77,9 @@
                 "twitter": "#",
                 "instagram": "#",
                 "linkedin": "#"
-            }
-        },
-        {
-            "name": "Elena Rostova",
-            "slug": "elena-rostova",
-            "rating": 4.8,
-            "reviewsCount": 51,
-            "specialization": "Shorts/Reels",
-            "bannerImage": "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&w=800&q=80",
-            "avatarImage": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=300&q=80",
-            "bio": "Master of short-form attention capture mechanisms. Engineered viral trends totaling over 40M organic impressions across Instagram, TikTok, and YouTube Shorts verticals.",
-            "experience": "3 Years",
-            "turnaround": "24 Hours",
-            "pricing": "$80/short",
-            "skills": [
-                "CapCut Pro",
-                "Premiere Pro",
-                "After Effects"
-            ],
-            "tags": [
-                "Hyper Fast Pacing",
-                "Kinetic Typography",
-                "Micro-animations"
-            ],
-            "videos": [
-                "https://www.youtube.com/embed/dQw4w9WgXcQ"
-            ],
-            "socials": {
-                "twitter": "#",
-                "instagram": "#",
-                "linkedin": "#"
-            }
+            },
+            "posX": 625,
+            "posY": 25
         }
     ]
 }
