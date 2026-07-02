@@ -396,13 +396,11 @@
             let rowYPositions = [0, 0, 0]; 
             
             cards.forEach((card) => {
-                // Ignore hidden profiles completely
                 if (card.style.display === 'none') return;
 
                 const slug = card.getAttribute('data-slug');
                 const matchedData = EDITORS_DATA.find(ed => ed.slug === slug);
                 
-                // IF WE ARE ON A FILTERED TAB: Snap active profiles cleanly into standard rows
                 if (currentCategory !== "All") {
                     const calculatedX = currentColumn * (cardWidth + 24);
                     const calculatedY = rowYPositions[currentColumn];
@@ -413,7 +411,6 @@
                     rowYPositions[currentColumn] += card.offsetHeight + 24;
                     currentColumn = (currentColumn + 1) % 3;
                 } 
-                // IF WE ARE ON THE MAIN TAB: Trust the custom positions completely
                 else if (matchedData && matchedData.posX !== undefined && matchedData.posY !== undefined) {
                     card.style.left = matchedData.posX + 'px';
                     card.style.top = matchedData.posY + 'px';
@@ -453,7 +450,11 @@
                 const matchesSearch = ed.name.toLowerCase().includes(searchVal) || 
                                       ed.skills.some(s => s.toLowerCase().includes(searchVal)) ||
                                       ed.tags.some(t => t.toLowerCase().includes(searchVal));
-                const matchesCat = currentCategory === "All" || ed.specialization === currentCategory;
+                
+                // Normalizes tracking variations matching spaces, lowercase, and slashes
+                const normalizedCategory = currentCategory.trim().toLowerCase();
+                const normalizedSpec = ed.specialization.trim().toLowerCase();
+                const matchesCat = currentCategory === "All" || normalizedSpec === normalizedCategory;
 
                 if(matchesSearch && matchesCat) {
                     card.style.display = 'flex';
@@ -462,7 +463,6 @@
                 }
             });
 
-            // CRITICAL FIX: Forces coordinates engine to recalculate positions after hiding assets
             initializeAbsoluteLayoutPositions();
         }
 
@@ -548,7 +548,7 @@
             const editor = EDITORS_DATA.find(ed => ed.slug === slug);
             const container = document.getElementById('profile-data-container');
             if(!editor) {
-                container.innerHTML = `<h2>Profile architecture asset not found inside standard vault data records.</h2>`;
+                container.innerHTML = `<h2 style="padding: 40px; text-align:center;">Profile slug "${slug}" not found inside standard vault data records.</h2>`;
                 return;
             }
             
@@ -602,12 +602,15 @@
             const profileView = document.getElementById('profile-view');
             const homeNav = document.getElementById('nav-home');
             
+            // CRITICAL ROUTER FIX: Prevents hash matching patterns from failing due to URL encoding variations
             if(hash.startsWith('#/editors/')) {
-                const slug = hash.replace('#/editors/', '');
+                const rawSlug = hash.substring(10); // Grabs everything right after "#/editors/" Safely
+                const cleanSlug = decodeURIComponent(rawSlug);
+                
                 homeView.style.display = 'none';
                 profileView.style.display = 'block';
                 if(homeNav) homeNav.classList.remove('active');
-                renderProfileView(slug);
+                renderProfileView(cleanSlug);
                 window.scrollTo(0,0);
             } else {
                 profileView.style.display = 'none';
@@ -764,7 +767,7 @@
             downloadAnchor.click();
             downloadAnchor.remove();
 
-            alert("COORDINATES EXPORTED SUCCESSFULLY!\n\nReplace the 'editvault-config.json' file inside your repository. Your custom layout structure positions are now permanently saved.");
+            alert("CONFIG EXPORTED SUCCESS!\n\nUpdate your JSON file inside your project structure.");
         }
 
         window.addEventListener('hashchange', handleRouting);
