@@ -60,7 +60,6 @@
         .section-header h2 { font-size: 2.5rem; letter-spacing: -0.5px; margin-bottom: 16px; }
         .section-header p { color: var(--text-muted); max-width: 500px; margin: 0 auto; }
         
-        /* Layout Grid Container Architecture */
         .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; transition: all 0.3s ease; }
         .feature-card { padding: 40px 32px; transition: transform 0.3s ease; position: relative; }
         .feature-card:hover { transform: translateY(-4px); border-color: var(--accent-neon); }
@@ -77,7 +76,6 @@
         .tab-btn { background: var(--bg-surface); border: 1px solid var(--border-color); color: var(--text-muted); padding: 8px 20px; border-radius: 20px; cursor: pointer; font-size: 0.9rem; font-weight: 500; transition: all 0.2s; }
         .tab-btn:hover, .tab-btn.active { background: rgba(0, 240, 255, 0.1); color: var(--accent-neon); border-color: var(--accent-neon); }
 
-        /* Absolute Spatial Layout Canvas */
         .editors-grid { 
             position: relative; 
             width: 100%; 
@@ -104,7 +102,11 @@
         .card-header-info { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
         .card-body h3 { font-size: 1.4rem; }
         .rating { color: #ffb800; font-size: 0.9rem; display: flex; align-items: center; gap: 4px; }
-        .specialization { color: var(--accent-neon); font-size: 0.85rem; text-transform: uppercase; font-weight: 600; letter-spacing: 1px; margin-bottom: 16px; }
+        
+        /* Updated Spec container styles */
+        .specialization-container { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+        .spec-badge { background: rgba(0, 240, 255, 0.08); border: 1px solid rgba(0, 240, 255, 0.2); color: var(--accent-neon); font-size: 0.75rem; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px; padding: 2px 8px; border-radius: 4px; }
+        
         .card-body p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
         .card-footer { margin-top: auto; padding-top: 20px; border-top: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; }
         .price-info span { display: block; font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; }
@@ -115,7 +117,6 @@
         .sticky-sidebar { position: sticky; top: 120px; padding: 32px; }
         .profile-img-big { width: 140px; height: 140px; border-radius: 50%; object-fit: cover; border: 3px solid var(--border-color); margin-bottom: 24px; }
         .profile-sidebar h1 { font-size: 2rem; margin-bottom: 4px; }
-        .profile-sidebar .spec-tag { color: var(--accent-neon); font-weight: 600; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; margin-bottom: 16px; display: block; }
         .meta-list { margin: 24px 0; list-style: none; display: flex; flex-direction: column; gap: 12px; }
         .meta-list li { display: flex; justify-content: space-between; font-size: 0.95rem; }
         .meta-list li span { color: var(--text-muted); }
@@ -140,11 +141,9 @@
         @media (max-width: 992px) { .hero h1 { font-size: 3rem; } .profile-layout { grid-template-columns: 1fr; } .sticky-sidebar { position: static; } .editor-card { position: relative !important; width: 100% !important; left: 0 !important; top: 0 !important; margin-bottom: 16px; } .editors-grid { min-height: auto !important; } }
         @media (max-width: 768px) { .nav-links { display: none; } .footer-grid { grid-template-columns: 1fr; gap: 40px; } .hero h1 { font-size: 2.25rem; } .hero p { font-size: 1rem; } }
 
-        /* --- ABSOLUTE MATRIX ENGINE STYLES --- */
         .admin-bar { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: rgba(10, 11, 14, 0.95); border: 2px solid var(--accent-neon); box-shadow: 0 0 30px rgba(0, 240, 255, 0.2); padding: 12px 24px; border-radius: 50px; z-index: 99999; display: none; align-items: center; gap: 16px; font-size: 0.9rem; }
         .admin-active [contenteditable="true"] { outline: 1px dashed var(--accent-neon) !important; background: rgba(0, 240, 255, 0.05); padding: 2px 6px; border-radius: 4px; }
         
-        /* High-Density 25px Spatial Alignment Grid Blueprint */
         .admin-active .editors-grid {
             background-image: 
                 linear-gradient(rgba(0, 240, 255, 0.07) 1px, transparent 1px),
@@ -173,9 +172,9 @@
 <body>
 
     <div class="admin-bar" id="adminControlBar">
-        <span style="font-weight:700; color:var(--accent-neon);"><i class="fa-solid fa-layer-group"></i> Free-Form Position Engine</span>
+        <span style="font-weight:700; color:var(--accent-neon);"><i class="fa-solid fa-layer-group"></i> Position Engine</span>
         <button class="admin-btn" onclick="addNewEditorProfile()"><i class="fa-solid fa-user-plus"></i> Add New Profile</button>
-        <button class="admin-btn" style="background:var(--accent-purple);" onclick="exportConfig()"><i class="fa-solid fa-cloud-arrow-up"></i> Export Coordinates to Config</button>
+        <button class="admin-btn" style="background:var(--accent-purple);" onclick="exportConfig()"><i class="fa-solid fa-cloud-arrow-up"></i> Export Config</button>
         <button class="admin-btn" style="border-color:#ff0055;" onclick="toggleAdminMode()">Exit</button>
     </div>
 
@@ -226,7 +225,7 @@
                 <div class="features-grid">
                     <div class="feature-card glass">
                         <i class="fa-solid fa-magnifying-glass-chart feature-icon"></i>
-                        <h3>We scout and find talented video editors</h3>
+                        <h3>We scout talented video editors</h3>
                         <p>We actively scout the post-production market to source and curate top industry talent.</p>
                     </div>
                     <div class="feature-card glass">
@@ -236,7 +235,7 @@
                     </div>
                     <div class="feature-card glass">
                         <i class="fa-solid fa-bolt feature-icon"></i>
-                        <h3>We help creators connect with the right editor</h3>
+                        <h3>Connect with the right editor</h3>
                         <p>Eliminate complex discovery structures. Pick an architecture, connect instantly, begin building.</p>
                     </div>
                 </div>
@@ -253,19 +252,26 @@
                 <div class="filter-container">
                     <div class="search-wrapper">
                         <i class="fa-solid fa-magnifying-glass"></i>
-                        <input type="text" id="editor-search" placeholder="Search by name, skills, or style..." oninput="filterEditors()">
+                        <input type="text" id="editor-search" placeholder="Search by name, tags, styles or categories..." oninput="filterEditors()">
                     </div>
+                    
+                    <!-- Exhaustive Styling & Categorization Filtering Tabs -->
                     <div class="category-tabs" id="category-tabs">
-                        <button class="tab-btn active" onclick="filterCategory('All', this)">All Editors</button>
+                        <button class="tab-btn active" onclick="filterCategory('All', this)">All Layouts</button>
+                        <button class="tab-btn" onclick="filterCategory('Talking Head', this)">Talking Head</button>
+                        <button class="tab-btn" onclick="filterCategory('Business', this)">Business</button>
+                        <button class="tab-btn" onclick="filterCategory('Finance', this)">Finance</button>
                         <button class="tab-btn" onclick="filterCategory('Gaming', this)">Gaming</button>
                         <button class="tab-btn" onclick="filterCategory('Shorts/Reels', this)">Shorts/Reels</button>
                         <button class="tab-btn" onclick="filterCategory('Documentary', this)">Documentary</button>
                         <button class="tab-btn" onclick="filterCategory('Cinematic', this)">Cinematic</button>
+                        <button class="tab-btn" onclick="filterCategory('Vlogs', this)">Vlogs</button>
+                        <button class="tab-btn" onclick="filterCategory('Corporate', this)">Corporate</button>
+                        <button class="tab-btn" onclick="filterCategory('Crypto/Web3', this)">Crypto/Web3</button>
                         <button class="tab-btn" onclick="filterCategory('YouTube Long-form', this)">YouTube Long-form</button>
                     </div>
                 </div>
 
-                <!-- Absolute Grid Coordinates Matrix Target Wrap -->
                 <div class="editors-grid" id="editors-display"></div>
             </div>
         </section>
@@ -303,7 +309,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 EditVault. Curated meticulously by Administration. <i class="fa-solid fa-lock" style="cursor:pointer;" onclick="toggleAdminMode()" title="Admin Entry Configuration Control Toggle"></i></p>
+                <p>&copy; 2026 EditVault. <i class="fa-solid fa-lock" style="cursor:pointer;" onclick="toggleAdminMode()" title="Admin Toggle"></i></p>
             </div>
         </div>
     </footer>
@@ -336,14 +342,25 @@
                 document.getElementById('txt-footer-email').innerText = config.footerEmail || "editingvault@gmail.com";
                 document.getElementById('txt-footer-loc').innerText = config.footerLoc || "Bengaluru, India";
 
-                EDITORS_DATA = config.editors || [];
+                // Backward compatibility mapping layer (Convert old string specializations into an array)
+                let rawEditors = config.editors || [];
+                EDITORS_DATA = rawEditors.map(ed => {
+                    if (typeof ed.specialization === 'string') {
+                        ed.specialization = ed.specialization.split(',').map(s => s.trim()).filter(s => s.length > 0);
+                    }
+                    if (!Array.isArray(ed.specialization)) {
+                        ed.specialization = ["Cinematic"];
+                    }
+                    return ed;
+                });
+
                 renderMarketplace(EDITORS_DATA);
                 handleRouting();
 
             } catch (error) {
                 console.error("Error loading JSON:", error);
                 document.getElementById('txt-hero-title').innerText = "Local Environment Warning";
-                document.getElementById('txt-hero-subtitle').innerText = "Your browser blocks reading local JSON files directly. To test your free-form placements, push your workspace to GitHub Pages or run VS Code Live Server.";
+                document.getElementById('txt-hero-subtitle').innerText = "Your browser blocks reading local JSON files directly. To test, push workspace to GitHub Pages or run VS Code Live Server.";
             }
         }
 
@@ -356,11 +373,13 @@
         function renderMarketplace(data) {
             const grid = document.getElementById('editors-display');
             
-            // Filter handles hiding elements safely without crashing coordinates
             grid.innerHTML = data.map((ed) => {
                 const posX = ed.posX !== undefined ? ed.posX : '';
                 const posY = ed.posY !== undefined ? ed.posY : '';
                 const styleCoords = (posX !== '' && posY !== '') ? `left: ${posX}px; top: ${posY}px;` : '';
+
+                // Generate badge matrix for multi-specializations
+                const specBadges = ed.specialization.map(spec => `<span class="spec-badge">${spec}</span>`).join('');
 
                 return `
                 <div class="editor-card glass" data-slug="${ed.slug}" style="${styleCoords}">
@@ -373,7 +392,7 @@
                             <h3>${ed.name}</h3>
                             <div class="rating"><i class="fa-solid fa-star"></i> ${ed.rating}</div>
                         </div>
-                        <div class="specialization">${ed.specialization}</div>
+                        <div class="specialization-container">${specBadges}</div>
                         <p>${ed.bio}</p>
                         <button class="admin-btn admin-edit-config" onclick="openProfileModalBySlug('${ed.slug}', event)"><i class="fa-solid fa-gear"></i> Edit Profile Config</button>
                         <div class="card-footer">
@@ -387,47 +406,40 @@
                 </div>
             `}).join('');
             
-            // Build absolute default grid flow positions if they don't have saved coords yet
             initializeAbsoluteLayoutPositions();
             setupAbsoluteSpatialDrag();
         }
 
         function initializeAbsoluteLayoutPositions() {
-            if (window.innerWidth <= 992) return; // Drop coordinates calculation on mobile viewports
+            if (window.innerWidth <= 992) return; 
             
             const cards = document.querySelectorAll('#editors-display .editor-card');
             const containerWidth = document.getElementById('editors-display').offsetWidth;
             const cardWidth = (containerWidth / 3) - 16;
             
             let currentColumn = 0;
-            let rowYPositions = [0, 0, 0]; // Keep track of heights for 3 columns dynamic waterfall masonry style
+            let rowYPositions = [0, 0, 0]; 
             
             cards.forEach((card) => {
+                if (card.style.display === 'none') return; // Skip invisible items
+                
                 const slug = card.getAttribute('data-slug');
                 const matchedData = EDITORS_DATA.find(ed => ed.slug === slug);
                 
-                // If coordinates are explicitly stored in data, use them directly
-                if (matchedData && matchedData.posX !== undefined && matchedData.posY !== undefined) {
+                if (matchedData && matchedData.posX !== undefined && matchedData.posY !== undefined && isAdminMode) {
                     card.style.left = matchedData.posX + 'px';
                     card.style.top = matchedData.posY + 'px';
                     
-                    // Maintain height sizing trackers
                     const bottomEdge = matchedData.posY + card.offsetHeight + 24;
                     if (bottomEdge > document.getElementById('editors-display').offsetHeight) {
                         document.getElementById('editors-display').style.minHeight = bottomEdge + 'px';
                     }
                 } else {
-                    // Standard absolute layout builder default loop arrangement
                     const calculatedX = currentColumn * (cardWidth + 24);
                     const calculatedY = rowYPositions[currentColumn];
                     
                     card.style.left = calculatedX + 'px';
                     card.style.top = calculatedY + 'px';
-                    
-                    if(matchedData) {
-                        matchedData.posX = calculatedX;
-                        matchedData.posY = calculatedY;
-                    }
                     
                     rowYPositions[currentColumn] += card.offsetHeight + 24;
                     currentColumn = (currentColumn + 1) % 3;
@@ -449,8 +461,10 @@
 
                 const matchesSearch = ed.name.toLowerCase().includes(searchVal) || 
                                       ed.skills.some(s => s.toLowerCase().includes(searchVal)) ||
+                                      ed.specialization.some(s => s.toLowerCase().includes(searchVal)) ||
                                       ed.tags.some(t => t.toLowerCase().includes(searchVal));
-                const matchesCat = currentCategory === "All" || ed.specialization === currentCategory;
+                                      
+                const matchesCat = currentCategory === "All" || ed.specialization.includes(currentCategory);
 
                 if(matchesSearch && matchesCat) {
                     card.style.display = 'flex';
@@ -458,6 +472,8 @@
                     card.style.display = 'none';
                 }
             });
+            
+            initializeAbsoluteLayoutPositions();
         }
 
         function filterCategory(cat, btnEl) {
@@ -467,7 +483,6 @@
             filterEditors();
         }
 
-        /* --- ADVANCED 2D COORD ABSOLUTE SNAP ENGINE --- */
         function setupAbsoluteSpatialDrag() {
             const gridCanvas = document.getElementById('editors-display');
             let activeItem = null;
@@ -494,14 +509,10 @@
 
             function onMouseMove(e) {
                 if (!activeItem) return;
-                
                 const canvasRect = gridCanvas.getBoundingClientRect();
-                
-                // Track mouse movement relative to canvas boundary
                 let localX = e.clientX - canvasRect.left - shiftX;
                 let localY = e.clientY - canvasRect.top - shiftY;
 
-                // Lock elements within left and upper bounds safely
                 if (localX < 0) localX = 0;
                 if (localY < 0) localY = 0;
 
@@ -512,7 +523,6 @@
             function onMouseUp() {
                 if (!activeItem) return;
 
-                // 25px High-Precision Grid Coordinate Alignment Matrix Snapping
                 const gridStep = 25;
                 let currentLeft = parseFloat(activeItem.style.left);
                 let currentTop = parseFloat(activeItem.style.top);
@@ -523,7 +533,6 @@
                 activeItem.style.left = snappedLeft + 'px';
                 activeItem.style.top = snappedTop + 'px';
 
-                // Core State Sync Data Update
                 const slug = activeItem.getAttribute('data-slug');
                 const matchedData = EDITORS_DATA.find(ed => ed.slug === slug);
                 if (matchedData) {
@@ -531,7 +540,6 @@
                     matchedData.posY = snappedTop;
                 }
 
-                // Grow canvas tracking baseline dynamically if card exceeds border perimeter
                 const lowestPoint = snappedTop + activeItem.offsetHeight + 50;
                 if (lowestPoint > parseFloat(gridCanvas.style.minHeight)) {
                     gridCanvas.style.minHeight = lowestPoint + 'px';
@@ -549,17 +557,18 @@
             const editor = EDITORS_DATA.find(ed => ed.slug === slug);
             const container = document.getElementById('profile-data-container');
             if(!editor) {
-                container.innerHTML = `<h2>Profile architecture asset not found inside standard vault data records.</h2>`;
+                container.innerHTML = `<h2>Profile record not found.</h2>`;
                 return;
             }
             
             const reviewsText = (editor.reviewsCount && parseInt(editor.reviewsCount) > 0) ? `(${editor.reviewsCount} verified audits)` : '';
+            const profileSpecBadges = editor.specialization.map(spec => `<span class="spec-badge" style="margin-right:4px;">${spec}</span>`).join('');
 
             container.innerHTML = `
                 <div class="profile-sidebar glass sticky-sidebar">
                     <img src="${editor.avatarImage}" class="profile-img-big" alt="${editor.name}">
                     <h1>${editor.name}</h1>
-                    <span class="spec-tag">${editor.specialization}</span>
+                    <div class="specialization-container" style="margin: 12px 0;">${profileSpecBadges}</div>
                     <div class="rating" style="font-size:1.1rem; margin-bottom: 20px;">
                         <i class="fa-solid fa-star"></i> ${editor.rating} ${reviewsText}
                     </div>
@@ -659,18 +668,13 @@
             const fieldsContainer = document.getElementById('modal-fields');
             document.getElementById('modal-title').innerText = `Configure Parameters: ${ed.name}`;
             
+            // Render comma-separated input for easy multi-category management
             fieldsContainer.innerHTML = `
                 <label>Editor Name</label><input type="text" id="m-name" value="${ed.name}">
                 <label>Rating (e.g. 4.9)</label><input type="number" step="0.1" min="0" max="5" id="m-rating" value="${ed.rating || 5.0}">
                 <label>Reviews Audits Count</label><input type="number" id="m-reviews" value="${ed.reviewsCount || 0}">
-                <label>Specialization Category</label>
-                <select id="m-spec">
-                    <option ${ed.specialization==='Gaming'?'selected':''}>Gaming</option>
-                    <option ${ed.specialization==='Shorts/Reels'?'selected':''}>Shorts/Reels</option>
-                    <option ${ed.specialization==='Documentary'?'selected':''}>Documentary</option>
-                    <option ${ed.specialization==='Cinematic'?'selected':''}>Cinematic</option>
-                    <option ${ed.specialization==='YouTube Long-form'?'selected':''}>YouTube Long-form</option>
-                </select>
+                <label>Specialization Categories (Comma Separated)</label>
+                <input type="text" id="m-spec" value="${ed.specialization.join(', ')}" placeholder="e.g. Talking Head, Business, Finance, Gaming">
                 <label>Pricing Structure Tier</label><input type="text" id="m-price" value="${ed.pricing}">
                 <label>Bio Presentation</label><textarea id="m-bio" rows="3">${ed.bio}</textarea>
                 <label>Avatar Photo URL</label><input type="text" id="m-avatar" value="${ed.avatarImage}">
@@ -693,7 +697,10 @@
                 ed.slug = ed.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
                 ed.rating = parseFloat(document.getElementById('m-rating').value) || 5.0;
                 ed.reviewsCount = parseInt(document.getElementById('m-reviews').value) || 0;
-                ed.specialization = document.getElementById('m-spec').value;
+                
+                // Parse the comma-separated strings back into arrays safely
+                ed.specialization = document.getElementById('m-spec').value.split(',').map(s=>s.trim()).filter(s => s.length > 0);
+                
                 ed.pricing = document.getElementById('m-price').value;
                 ed.bio = document.getElementById('m-bio').value;
                 ed.avatarImage = document.getElementById('m-avatar').value;
@@ -717,7 +724,7 @@
                 slug: "new-professional-editor-" + uniqueId,
                 rating: 5.0,
                 reviewsCount: 0,
-                specialization: "Cinematic",
+                specialization: ["Talking Head", "Business"],
                 bannerImage: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=800&q=80",
                 avatarImage: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=300&q=80",
                 bio: "Configure profile variables to update placement metadata coordinates.",
@@ -765,7 +772,7 @@
             downloadAnchor.click();
             downloadAnchor.remove();
 
-            alert("COORDINATES EXPORTED SUCCESSFULLY!\n\nReplace the 'editvault-config.json' file inside your repository. Your custom layout structure positions are now permanently saved.");
+            alert("CONFIG EXPORTED!\n\nReplace 'editvault-config.json' inside your repository workspace.");
         }
 
         window.addEventListener('hashchange', handleRouting);
