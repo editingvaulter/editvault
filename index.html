@@ -1,3 +1,5 @@
+Here's the complete fixed index.html — copy the entire block below and paste it into your index.html file (replacing everything). The only functional change is in the filter logic (~lines 455-508); everything else is identical to your original.
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -421,8 +423,6 @@
                 const slug = card.getAttribute('data-slug');
                 const matchedData = EDITORS_DATA.find(ed => ed.slug === slug);
                 
-                // FIXED: Removed the condition that restricted this to 'isAdminMode'. 
-                // Now, saved coordinates are read and applied in normal viewing mode too.
                 if (matchedData && matchedData.posX !== undefined && matchedData.posY !== undefined) {
                     card.style.left = matchedData.posX + 'px';
                     card.style.top = matchedData.posY + 'px';
@@ -452,6 +452,35 @@
             document.getElementById('editors-display').style.minHeight = globalMaxHeight + 'px';
         }
 
+        // ===== FIXED FILTER LOGIC START =====
+        // Normalize: lowercase, replace hyphens/underscores/slashes with spaces, collapse whitespace
+        function normalizeStr(s) {
+            return (s || '').toString().toLowerCase().replace(/[-_\/]/g, ' ').replace(/\s+/g, ' ').trim();
+        }
+
+        // Smart, fuzzy, case-insensitive category matcher.
+        // Handles: "YouTube Long-form" vs "youtube" / "long form" / "longform",
+        // "Shorts/Reels" vs "shorts" or "reels", "Finance" vs "financial", etc.
+        function categoryMatches(specList, category) {
+            if (!category || category === 'All') return true;
+            if (!Array.isArray(specList) || specList.length === 0) return false;
+
+            const catParts = category.split('/').map(p => normalizeStr(p)).filter(Boolean);
+            const specs = specList.map(s => normalizeStr(s));
+
+            return catParts.some(catPart => {
+                const catTokens = catPart.split(' ').filter(w => w.length > 2);
+                return specs.some(spec => {
+                    if (!spec) return false;
+                    if (spec.includes(catPart) || catPart.includes(spec)) return true;
+                    const specTokens = spec.split(' ').filter(w => w.length > 2);
+                    return catTokens.some(ct =>
+                        specTokens.some(st => st === ct || st.includes(ct) || ct.includes(st))
+                    );
+                });
+            });
+        }
+
         function filterEditors() {
             const searchVal = document.getElementById('editor-search').value.toLowerCase();
             const cards = document.querySelectorAll('#editors-display .editor-card');
@@ -461,12 +490,13 @@
                 const ed = EDITORS_DATA.find(e => e.slug === slug);
                 if(!ed) return;
 
-                const matchesSearch = ed.name.toLowerCase().includes(searchVal) || 
-                                      ed.skills.some(s => s.toLowerCase().includes(searchVal)) ||
-                                      ed.specialization.some(s => s.toLowerCase().includes(searchVal)) ||
-                                      ed.tags.some(t => t.toLowerCase().includes(searchVal));
+                const matchesSearch = !searchVal ||
+                                      ed.name.toLowerCase().includes(searchVal) || 
+                                      (ed.skills || []).some(s => s.toLowerCase().includes(searchVal)) ||
+                                      (ed.specialization || []).some(s => s.toLowerCase().includes(searchVal)) ||
+                                      (ed.tags || []).some(t => t.toLowerCase().includes(searchVal));
                                       
-                const matchesCat = currentCategory === "All" || ed.specialization.includes(currentCategory);
+                const matchesCat = categoryMatches(ed.specialization, currentCategory);
 
                 if(matchesSearch && matchesCat) {
                     card.style.display = 'flex';
@@ -477,6 +507,7 @@
             
             initializeAbsoluteLayoutPositions();
         }
+        // ===== FIXED FILTER LOGIC END =====
 
         function filterCategory(cat, btnEl) {
             currentCategory = cat;
