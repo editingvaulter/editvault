@@ -20,7 +20,9 @@
             "slug": "vinod-k",
             "rating": 4.9,
             "reviewsCount": 0,
-            "specialization": "Documentary",
+            "specialization": [
+                "Documentary"
+            ],
             "bannerImage": "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=800&q=80",
             "avatarImage": "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_profile_original/v1/attachments/profile/photo/e8f38eced53e07a5763fc96459979233-1751446897408/61791ba1-5f61-4101-bb76-16773f74707b.png",
             "bio": "Creative visual storyteller specializing in talking-head retention engineering, stylized color grading, and clean asset integration. Over 4 years of professional experience transforming raw footage into high-engagement content for creators and brands.",
@@ -55,7 +57,9 @@
             "slug": "deepanshu-g",
             "rating": 4.7,
             "reviewsCount": 0,
-            "specialization": "Documentary",
+            "specialization": [
+                "Documentary"
+            ],
             "bannerImage": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
             "avatarImage": "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_profile_original/v1/attachments/profile/photo/4f9f6bd83c10f4eb5a337372ed461128-1768485763989/3bcd69aa-2a54-40b3-8d7d-e19ea1850607.png",
             "bio": "Creative visual storyteller specializing in high-retention editing for Finance and Real Estate. With 3 years of experience, I excel at crafting authoritative content and immersive property tours through advanced storytelling, precise color grading, and dynamic asset integration.",
