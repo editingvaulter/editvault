@@ -439,7 +439,7 @@
         }
 
         function filterEditors() {
-            const searchVal = document.getElementById('editor-search').value.toLowerCase();
+            const searchVal = document.getElementById('editor-search').value.toLowerCase().trim();
             const cards = document.querySelectorAll('#editors-display .editor-card');
             
             cards.forEach(card => {
@@ -447,16 +447,17 @@
                 const ed = EDITORS_DATA.find(e => e.slug === slug);
                 if(!ed) return;
 
-                const matchesSearch = ed.name.toLowerCase().includes(searchVal) || 
+                const matchesSearch = searchVal === "" || 
+                                      ed.name.toLowerCase().includes(searchVal) || 
                                       ed.skills.some(s => s.toLowerCase().includes(searchVal)) ||
                                       ed.tags.some(t => t.toLowerCase().includes(searchVal));
                 
-                // Normalizes tracking variations matching spaces, lowercase, and slashes
-                const normalizedCategory = currentCategory.trim().toLowerCase();
-                const normalizedSpec = ed.specialization.trim().toLowerCase();
-                const matchesCat = currentCategory === "All" || normalizedSpec === normalizedCategory;
+                // FIXED HARD FILTER ENGINE: Explicit cleanly trimmed string validation matches configurations precisely
+                const targetCat = currentCategory.trim().toLowerCase();
+                const editorSpec = (ed.specialization || "").trim().toLowerCase();
+                const matchesCat = currentCategory === "All" || editorSpec === targetCat;
 
-                if(matchesSearch && matchesCat) {
+                if (matchesSearch && matchesCat) {
                     card.style.display = 'flex';
                 } else {
                     card.style.display = 'none';
@@ -602,9 +603,8 @@
             const profileView = document.getElementById('profile-view');
             const homeNav = document.getElementById('nav-home');
             
-            // CRITICAL ROUTER FIX: Prevents hash matching patterns from failing due to URL encoding variations
             if(hash.startsWith('#/editors/')) {
-                const rawSlug = hash.substring(10); // Grabs everything right after "#/editors/" Safely
+                const rawSlug = hash.substring(10); 
                 const cleanSlug = decodeURIComponent(rawSlug);
                 
                 homeView.style.display = 'none';
