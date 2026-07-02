@@ -38,7 +38,9 @@
             "videos": [
                 "https://www.youtube.com/embed/4JQms5x4cfM",
                 "https://www.youtube.com/embed/-aW_8pOJcH4",
-                "https://www.youtube.com/embed/OGAamYcQL7k"
+                "https://www.youtube.com/embed/OGAamYcQL7k",
+                "https://www.youtube.com/embed/utXTg3A8GgI?list=PLQIn8D3lhjSM&index=4",
+                "https://www.youtube.com/embed/E08J3V5ziyQ?list=PLQIn8D3lhjSM&index=5"
             ],
             "socials": {
                 "twitter": "#",
@@ -71,10 +73,10 @@
                 "finance"
             ],
             "videos": [
-                "https://www.youtube.com/embed/tDlcshx_dig&list=PLILIea51OzgA&index=4",
-                "https://www.youtube.com/embed/FJEiup-Y41k&list=PLILIea51OzgA&index=5",
-                "https://www.youtube.com/embed/7FW1kqY-Kzs&list=PLILIea51OzgA&index=3",
-                "https://www.youtube.com/embed/erWUnGd9GW0&list=PLILIea51OzgA&index=2"
+                "https://www.youtube.com/embed/tDlcshx_dig?list=PLILIea51OzgA&index=4",
+                "https://www.youtube.com/embed/FJEiup-Y41k?list=PLILIea51OzgA&index=5",
+                "https://www.youtube.com/embed/7FW1kqY-Kzs?list=PLILIea51OzgA&index=3",
+                "https://www.youtube.com/embed/erWUnGd9GW0?list=PLILIea51OzgA&index=2"
             ],
             "socials": {
                 "twitter": "#",
