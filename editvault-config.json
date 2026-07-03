@@ -21,31 +21,23 @@
             "rating": 4.8,
             "reviewsCount": 0,
             "specialization": [
-                "Business",
-                "documentary",
-                "cinematic",
-                "youtube long form",
-                "short/reels"
+                "Talking Head",
+                "Business"
             ],
             "bannerImage": "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=800&q=80",
-            "avatarImage": "https://fiverr-res.cloudinary.com/image/upload/f_auto,q_auto,t_profile_original/v1/attachments/profile/photo/40d3afb5b3235fc52617bb962115d572-1715809634204/d68de0fa-4bb9-4749-8823-f98af9a5770f.jpg",
-            "bio": "Versatile visual storyteller specializing in high-impact video production for a global clientele. With over 7 years of experience delivering thousands of projects across 60 countries, I utilize advanced workflows in Adobe Premiere Pro and After Effects to create polished, trend-aligned content for diverse formats ranging from corporate branding to creative media.",
-            "experience": "7 Years",
-            "turnaround": "2-3 Days",
-            "pricing": "From $--/video",
+            "avatarImage": "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=300&q=80",
+            "bio": "Configure profile variables to update placement metadata coordinates.",
+            "experience": "3 Years",
+            "turnaround": "3 Days",
+            "pricing": "From $300/video",
             "skills": [
-                "Adobe Premiere Pro",
-                "After Effects"
+                "Premiere Pro"
             ],
             "tags": [
                 "Cinematic Narrative"
             ],
             "videos": [
-                "https://www.youtube.com/embed/y7zo20qSeOs",
-                "https://www.youtube.com/embed/Cw66Hq_Mcgc",
-                "https://www.youtube.com/embed/iv-ai6j7Q7s",
-                "https://www.youtube.com/embed/NStPJXRLQqE",
-                "https://www.youtube.com/embed/DCF2PqM8fq0"
+                "https://www.youtube.com/embed/dQw4w9WgXcQ"
             ],
             "posX": 800,
             "posY": 25
